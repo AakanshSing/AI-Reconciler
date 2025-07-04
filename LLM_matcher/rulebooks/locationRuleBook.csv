@@ -1,0 +1,29 @@
+﻿Location1,Location2,Score,Comment
+Delhi ,New Delhi,1,"Locations close to each other, might be matching"
+Delhi ,Noida,1,"Locations close to each other, might be matching"
+Delhi ,NCR,1,"Locations close to each other, might be matching"
+Kharagpur,Mednipur,1,"Locations close to each other, might be matching"
+Delhi ,Agra,0,"Locations far apart, less chance of matching"
+Mumbai,Thane,0,"Location are a litlle far apart, still less chance of matching"
+Chennai,Madras,1,Both are names of same location
+Bengaluru,Mengaluru,0,"Locations far apart, less chance of matching even though their names are similar"
+Rewa,Rewari,0,"Locations far apart, less chance of matching even though their names are similar"
+Prayagraj,Allahabad,1,Both are names of same location
+Mumbai,South Mumbai,1,"Similar locations, might be matching"
+Mumbai,South Bombay,1,"Similar locations, might be matching"
+Dharwad,Dhanbad,0,"Locations far apart, less chance of matching even though their names are similar"
+Jhansi,Bundelkhand,1,"Similar locations, might be matching"
+Goa,Panaji,1,"Panaji is a city in Goa, Goa is a small state in size, might be matching"
+Kolakata,Howrah,1,"Locations close to each other, might be matching"
+Varanasi,Banaras,1,Both are names of same location
+Pune,Poona,1,Both are names of same location
+Bengaluru,Bengalore,1,Both are names of same location
+Odisha,Orissa,1,Both are names of same location
+Cuttack,Kataka,1,Both are names of same location
+Pondicherry,Puducherry,1,Both are names of same location
+Gurgaon,Gurugram,1,Both are names of same location
+Siliguri,Silchar,0,"Locations far apart, less chance of matching even though their names are similar"
+Raipur,Rajpur,0,"Locations far apart, less chance of matching even though their names are similar"
+Agra,Agartala,0,"Locations far apart, less chance of matching even though their names are similar"
+Amritsar,Amreli,0,"Locations far apart, less chance of matching even though their names are similar"
+Lucknow,Ludhiana,0,"Locations far apart, less chance of matching even though their names are similar"
