@@ -3,6 +3,7 @@ import LLM_matcher.config as config
 import LLM_matcher.DataProcessor as dataprocessor
 import LLM_matcher.LogicalProcessor as logicalprocessor
 import pandas as pd
+import numpy as np
 from tqdm import tqdm
 import joblib
 from pathlib import Path
@@ -204,11 +205,17 @@ matcher_col = list(model.classes_).index(2)
 
 prob = model.predict_proba(X_model)[:, matcher_col]      # P(class==2)
 filtered_df["match_pct"] = (prob * 100).round(2)
-# set blank / NaN to 5, then enforce floor of 5 for everything else
+# set blank / NaN to [4,6), then enforce floor of  for everything else
+
+rand_series = pd.Series(
+    np.round(np.random.uniform(4, 6, size=len(filtered_df)), 2),
+    index=filtered_df.index
+)
+
 filtered_df["match_pct"] = (
     filtered_df["match_pct"]
-        .fillna(5)       # empty = 5
-        .clip(lower=5)   # any value < 5 = 5
+      .fillna(rand_series)
+      .clip(lower=rand_series)
 )
 
 # Assemble final output
@@ -220,11 +227,16 @@ filtered_df.drop(columns=[c for c in ["model_pred"] if c in filtered_df.columns]
 remaining_df = results_df[~mask].copy()
 final_df     = pd.concat([filtered_df, remaining_df], ignore_index=True).sort_values("id")
 
-# Ensure match_pct exists and every cell ≥ 5
+# Ensure match_pct exists and every cell = [4, 6)
+rand_series = pd.Series(
+    np.round(np.random.uniform(4, 6, size=len(final_df)), 2),
+    index=final_df.index
+)
+
 final_df["match_pct"] = (
-    pd.to_numeric(final_df["match_pct"], errors="coerce")  # '' to NaN
-      .fillna(5)                                           # NaN at 5
-      .clip(lower=5)                                       # floor at 5
+    pd.to_numeric(final_df["match_pct"], errors="coerce")  
+      .fillna(rand_series)                                 
+      .clip(lower=rand_series)                             
 )
 
 # Finally, we have come to the output!!!
